@@ -1,6 +1,8 @@
+a {
+  text-decoration: none;
+}
+
 .app-wrapper {
-  background-color: #0264B0;
-  color: #fff;
   min-height: 100vh;
 }
 
@@ -11,4 +13,30 @@
 
 .nav-title {
   flex-grow: 1;
+}
+
+.signup-box {
+  padding-top: 10%;
+}
+
+.signup-input {
+  padding-bottom: 2%;
+}
+
+.signup-button {
+  padding-top: 2%;
+  text-align: right;
+}
+
+.signup-button Button {
+  padding: 3%;
+}
+
+.signup-link {
+  padding-top: 2%;
+  text-align: right;
+}
+
+.signup-link a {
+  color: #0264B0;
 }
