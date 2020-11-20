@@ -1,11 +1,15 @@
 import React, { Component } from "react"
-import { Link } from 'react-router-dom'
 
 import validate from "validate.js"
 
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
 
 import constraints from "../data/constraints"
 
@@ -14,6 +18,7 @@ const initialState = {
     emailAddress: "",
     password: "",
     passwordConfirmation: "",
+    occupation: "",
     errors: null,
 };
   
@@ -31,6 +36,7 @@ class SignUp extends Component {
           emailAddress,
           password,
           passwordConfirmation,
+          occupation,
         } = this.state;
     
         const errors = validate(
@@ -38,11 +44,13 @@ class SignUp extends Component {
             emailAddress: emailAddress,
             password: password,
             passwordConfirmation: passwordConfirmation,
+            occupation: occupation
           },
           {
             emailAddress: constraints.emailAddress,
             password: constraints.password,
             passwordConfirmation: constraints.passwordConfirmation,
+            occupation: constraints.occupation
           }
         );
     
@@ -65,12 +73,14 @@ class SignUp extends Component {
           emailAddress,
           password,
           passwordConfirmation,
+          occupation,
         } = this.state;
     
         if (
           !emailAddress ||
           !password ||
-          !passwordConfirmation
+          !passwordConfirmation ||
+          !occupation
         ) {
           return;
         }
@@ -110,12 +120,21 @@ class SignUp extends Component {
         });
     };
 
+    handleOccupationChange = (event) => {
+        const occupation = event.target.value;
+    
+        this.setState({
+          occupation: occupation,
+        });
+    };
+
     render() {
         const {
             performingAction,
             emailAddress,
             password,
             passwordConfirmation,
+            occupation,
             errors,
         } = this.state;
         return (
@@ -123,25 +142,25 @@ class SignUp extends Component {
                 <Grid item md={4}></Grid>
                 <Grid item md={4} className="signup-box">
                 <Grid item xs className="signup-input">
-            <TextField
-                autoComplete="email"
-                disabled={performingAction}
-                error={!!(errors && errors.emailAddress)}
-                fullWidth
-                helperText={
-                errors && errors.emailAddress
-                    ? errors.emailAddress[0]
-                    : ""
-                }
-                label="E-mail address"
-                required
-                type="email"
-                value={emailAddress}
-                variant="outlined"
-                InputLabelProps={{ required: false }}
-                onChange={this.handleEmailAddressChange}
-            />
-            </Grid>
+                    <TextField
+                        autoComplete="email"
+                        disabled={performingAction}
+                        error={!!(errors && errors.emailAddress)}
+                        fullWidth
+                        helperText={
+                        errors && errors.emailAddress
+                            ? errors.emailAddress[0]
+                            : ""
+                        }
+                        label="E-mail address"
+                        required
+                        type="email"
+                        value={emailAddress}
+                        variant="outlined"
+                        InputLabelProps={{ required: false }}
+                        onChange={this.handleEmailAddressChange}
+                    />
+                </Grid>
 
             <Grid item xs className="signup-input">
             <TextField
@@ -161,6 +180,7 @@ class SignUp extends Component {
                 onChange={this.handlePasswordChange}
             />
             </Grid>
+
             <Grid item xs className="signup-input">
             <TextField
                 autoComplete="password"
@@ -180,6 +200,24 @@ class SignUp extends Component {
                 InputLabelProps={{ required: false }}
                 onChange={this.handlePasswordConfirmationChange}
             />
+            </Grid>
+
+            <Grid item xs className="signup-input">
+                <FormControl fullWidth variant="outlined">
+                    <InputLabel id="occupation-label">I am a</InputLabel>
+                    <Select
+                    labelId="occupation-label"
+                    id="occupation"
+                    value={occupation}
+                    onChange={this.handleOccupationChange}
+                    label="occupation"
+                    >
+                    <MenuItem value={"developer"}>Developer</MenuItem>
+                    <MenuItem value={"investor"}>Investor</MenuItem>
+                    </Select>
+                </FormControl>
+            </Grid>
+
             <Grid item xs className="signup-button">
             <Button
                 disabled={
@@ -193,10 +231,6 @@ class SignUp extends Component {
             >
                 Sign up
             </Button>
-            </Grid>
-            <Grid item xs className="signup-link">
-                Already have an account? <Link color="primary" to="/">Sign In</Link>
-            </Grid>
             </Grid>
                 </Grid>
                 <Grid item md={4}></Grid>
