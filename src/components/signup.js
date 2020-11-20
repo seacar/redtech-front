@@ -41,6 +41,9 @@ const styles = {
       },
       '& .MuiFormLabel-root': {
         color: 'white'
+      },
+      '& .MuiOutlinedInput-input': {
+        color: 'white'
       }
     },
     padding: {
