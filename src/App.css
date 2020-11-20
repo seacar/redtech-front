@@ -13,6 +13,10 @@
   flex-grow: 1;
 }
 
+.nav-logo {
+  width: 5%;
+}
+
 .signup-box {
   padding-top: 10%;
 }
