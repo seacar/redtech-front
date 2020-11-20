@@ -156,11 +156,11 @@ class SignIn extends Component {
                       variant="contained"
                       onClick={this.signUp}
                   >
-                      Sign up
+                      Sign In
                   </Button>
                 </Grid>
                 <Grid item xs className="signup-link">
-                    Need to create an account? <Link color="primary" to="/">Sign In</Link>
+                    Need to create an account? <Link color="primary" to="/">Sign Up</Link>
                 </Grid>
                 </Grid>
                 <Grid item md={4}></Grid>

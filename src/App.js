@@ -9,6 +9,7 @@ import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 import Header from './components/header'
 
 import Home from './pages/home'
+import SignUp from './pages/signup'
 
 const theme = createMuiTheme({
   palette: {
@@ -31,6 +32,7 @@ function App() {
           <div className="container">
             <Switch>
               <Route exact path="/" component={Home} />
+              <Route exact path="/signup" component={SignUp} />
             </Switch>
           </div>
         </Router>
