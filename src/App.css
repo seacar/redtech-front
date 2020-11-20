@@ -14,7 +14,12 @@
 }
 
 .nav-logo {
-  width: 5%;
+  width: 10%;
+  padding: 3%;
+}
+
+.container {
+  padding: 5%;
 }
 
 .signup-box {
@@ -51,4 +56,8 @@
 
 .splash-logo {
   width: 20%;
+}
+
+.panel-nav {
+  text-align: center;
 }

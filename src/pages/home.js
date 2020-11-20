@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 
 import Header from '../components/header'
+
 import Splash from '../components/splash'
+import RedTech from '../components/redtech'
 
 const initialState = {
-    authenticated: false,
+    authenticated: false
 };
 
 class Home extends Component {
@@ -19,11 +21,14 @@ class Home extends Component {
 
         return (
             <>
-            {!authenticated && (
+            {authenticated && (
                 <Splash />
             )}
-            {authenticated && (
-                <Header />
+            {!authenticated && (
+                <div className="container">
+                    <Header />
+                    <RedTech />
+                </div>
             )}
             </>
         )
