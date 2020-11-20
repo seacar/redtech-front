@@ -1,9 +1,11 @@
 a {
-  text-decoration: none;
+  
 }
 
 .app-wrapper {
   min-height: 100vh;
+  background-color: #0264B0;
+  color: #fff;
 }
 
 .nav-bar {
@@ -19,8 +21,8 @@ a {
   padding-top: 10%;
 }
 
-.signup-input {
-  padding-bottom: 2%;
+.input-label {
+  color: #fff;
 }
 
 .signup-button {
@@ -38,5 +40,5 @@ a {
 }
 
 .signup-link a {
-  color: #0264B0;
+  color: #fff;
 }

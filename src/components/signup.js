@@ -1,5 +1,8 @@
 import React, { Component } from "react"
 
+import PropTypes from "prop-types"
+import { withStyles } from "@material-ui/core/styles"
+
 import validate from "validate.js"
 
 import Grid from '@material-ui/core/Grid'
@@ -21,6 +24,29 @@ const initialState = {
     occupation: "",
     errors: null,
 };
+
+
+const styles = {
+    root: {
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: 'white',
+        },
+        '&:hover fieldset': {
+          borderColor: 'white',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: 'white',
+        },
+      },
+      '& .MuiFormLabel-root': {
+        color: 'white'
+      }
+    },
+    padding: {
+      paddingBottom: '3%'
+    }
+  };
   
 
 class SignUp extends Component {
@@ -129,6 +155,8 @@ class SignUp extends Component {
     };
 
     render() {
+
+        const { classes } = this.props;
         const {
             performingAction,
             emailAddress,
@@ -141,8 +169,10 @@ class SignUp extends Component {
             <Grid container>
                 <Grid item md={4}></Grid>
                 <Grid item md={4} className="signup-box">
-                <Grid item xs className="signup-input">
+                <h3>Create Account</h3>
+                <Grid item xs className={classes.root}>
                     <TextField
+                    className={classes.padding}
                         autoComplete="email"
                         disabled={performingAction}
                         error={!!(errors && errors.emailAddress)}
@@ -162,8 +192,9 @@ class SignUp extends Component {
                     />
                 </Grid>
 
-            <Grid item xs className="signup-input">
+            <Grid item xs className={classes.root}>
             <TextField
+            className={classes.padding}
                 autoComplete="new-password"
                 disabled={performingAction}
                 error={!!(errors && errors.password)}
@@ -181,8 +212,9 @@ class SignUp extends Component {
             />
             </Grid>
 
-            <Grid item xs className="signup-input">
+            <Grid item xs className={classes.root}>
             <TextField
+            className={classes.padding}
                 autoComplete="password"
                 disabled={performingAction}
                 error={!!(errors && errors.passwordConfirmation)}
@@ -202,8 +234,8 @@ class SignUp extends Component {
             />
             </Grid>
 
-            <Grid item xs className="signup-input">
-                <FormControl fullWidth variant="outlined">
+            <Grid item xs className={classes.root}>
+                <FormControl fullWidth variant="outlined" className={classes.padding}>
                     <InputLabel id="occupation-label">I am a</InputLabel>
                     <Select
                     labelId="occupation-label"
@@ -241,4 +273,8 @@ class SignUp extends Component {
 
 
 
-export default SignUp;
+SignUp.propTypes = {
+    classes: PropTypes.object.isRequired
+  };
+  
+  export default withStyles(styles)(SignUp);

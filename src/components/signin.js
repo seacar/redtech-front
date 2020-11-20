@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 
 import validate from "validate.js"
 
+import PropTypes from "prop-types"
+import { withStyles } from "@material-ui/core/styles"
+
 import Grid from '@material-ui/core/Grid'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -14,6 +17,28 @@ const initialState = {
     emailAddress: "",
     password: "",
     errors: null,
+};
+
+const styles = {
+  root: {
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'white',
+      },
+      '&:hover fieldset': {
+        borderColor: 'white',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: 'white',
+      },
+    },
+    '& .MuiFormLabel-root': {
+      color: 'white'
+    }
+  },
+  padding: {
+    paddingBottom: '3%'
+  }
 };
   
 
@@ -97,6 +122,8 @@ class SignIn extends Component {
     };
 
     render() {
+
+        const { classes } = this.props;
         const {
             performingAction,
             emailAddress,
@@ -107,8 +134,10 @@ class SignIn extends Component {
             <Grid container>
               <Grid item md={4}></Grid>
               <Grid item md={4} className="signup-box">
-                <Grid item xs className="signup-input">
+                <h3>Sign In</h3>
+                <Grid item xs className={classes.root}>
                   <TextField
+                      className={classes.padding}
                       autoComplete="email"
                       disabled={performingAction}
                       error={!!(errors && errors.emailAddress)}
@@ -123,19 +152,20 @@ class SignIn extends Component {
                       type="email"
                       value={emailAddress}
                       variant="outlined"
-                      InputLabelProps={{ required: false }}
+                      InputLabelProps={{ required: true }}
                       onChange={this.handleEmailAddressChange}
                   />
                 </Grid>
 
-                <Grid item xs className="signup-input">
+                <Grid item xs className={classes.root}>
                   <TextField
+                      className={classes.padding}
                       autoComplete="new-password"
                       disabled={performingAction}
                       error={!!(errors && errors.password)}
                       fullWidth
                       helperText={
-                      errors && errors.password ? errors.password[0] : ""
+                        errors && errors.password ? errors.password[0] : ""
                       }
                       label="Password"
                       required
@@ -160,7 +190,7 @@ class SignIn extends Component {
                   </Button>
                 </Grid>
                 <Grid item xs className="signup-link">
-                    Need to create an account? <Link color="primary" to="/">Sign Up</Link>
+                    Need to create an account? <Link color="primary" to="/signup">Sign Up</Link>
                 </Grid>
                 </Grid>
                 <Grid item md={4}></Grid>
@@ -170,5 +200,8 @@ class SignIn extends Component {
 }
 
 
+SignIn.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
-export default SignIn;
+export default withStyles(styles)(SignIn);
