@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
-import SignIn from '../components/signin'
+import Header from '../components/header'
+import Splash from '../components/splash'
 
 const initialState = {
     authenticated: false,
@@ -19,7 +20,10 @@ class Home extends Component {
         return (
             <>
             {!authenticated && (
-                <SignIn />
+                <Splash />
+            )}
+            {authenticated && (
+                <Header />
             )}
             </>
         )

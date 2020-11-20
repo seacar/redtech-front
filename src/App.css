@@ -1,7 +1,3 @@
-a {
-  
-}
-
 .app-wrapper {
   min-height: 100vh;
   background-color: #0264B0;
@@ -41,4 +37,14 @@ a {
 
 .signup-link a {
   color: #fff;
+}
+
+
+.splash-container {
+  text-align: center;
+  padding: 10%;
+}
+
+.splash-logo {
+  width: 20%;
 }

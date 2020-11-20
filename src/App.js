@@ -6,10 +6,9 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles'
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme'
 
-import Header from './components/header'
-
 import Home from './pages/home'
 import SignUp from './pages/signup'
+import SignIn from './pages/signin'
 
 const theme = createMuiTheme({
   palette: {
@@ -28,13 +27,11 @@ function App() {
     <div className="app-wrapper">
       <MuiThemeProvider theme={theme}>
         <Router>
-          <Header />
-          <div className="container">
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/signup" component={SignUp} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/signin" component={SignIn} />
+          </Switch>
         </Router>
       </MuiThemeProvider>
     </div>
